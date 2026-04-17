@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: faclon-ml-app
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+      - /app/__pycache__
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - faclon-network
+
+  jupyter:
+    image: jupyter/pytorch-notebook:latest
+    container_name: faclon-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/home/jovyan/work
+      - ./requirements.txt:/tmp/requirements.txt
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    command: >
+      bash -c "pip install -r /tmp/requirements.txt &&
+      jupyter lab --ip=0.0.0.0 --allow-root --no-browser"
+    networks:
+      - faclon-network
+
+networks:
+  faclon-network:
+    driver: bridge
