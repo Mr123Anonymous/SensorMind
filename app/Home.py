@@ -177,8 +177,29 @@ st.markdown("""
 3. Check the About page for technical details
 
 ### Resources
-- [Error Analysis Report](reports/error_analysis.md)
 """)
+
+error_report_path = PROJECT_ROOT / "reports" / "error_analysis.md"
+if error_report_path.exists():
+    report_text = error_report_path.read_text(encoding="utf-8")
+    col_open, col_download = st.columns([1, 1])
+    with col_open:
+        if st.button("Open Error Analysis Report", use_container_width=True):
+            st.session_state["show_error_report"] = True
+    with col_download:
+        st.download_button(
+            "Download Error Analysis Report",
+            data=report_text,
+            file_name="error_analysis.md",
+            mime="text/markdown",
+            use_container_width=True,
+        )
+
+    if st.session_state.get("show_error_report", False):
+        st.markdown("#### Error Analysis Report")
+        st.markdown(report_text)
+else:
+    st.info("Error analysis report not found yet. Run `python scripts/run_phase4.py` first.")
 
 st.markdown("---")
 st.markdown("""
