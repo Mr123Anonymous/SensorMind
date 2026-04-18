@@ -77,7 +77,7 @@ def get_regression_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str, 
     mae = mean_absolute_error(y_true, y_pred)
     mape = mean_absolute_percentage_error(y_true, y_pred)
     
-    # R² score
+    # R2 score
     ss_res = np.sum((y_true - y_pred) ** 2)
     ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
     r2 = 1 - (ss_res / ss_tot) if ss_tot > 0 else 0.0

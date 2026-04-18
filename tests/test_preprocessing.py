@@ -18,7 +18,7 @@ from src.data.preprocessing import (
 def sample_dataframe():
     """Create sample dataframe for testing."""
     np.random.seed(42)
-    dates = pd.date_range("2023-01-01", periods=100, freq="H")
+    dates = pd.date_range("2023-01-01", periods=100, freq="h")
     df = pd.DataFrame({
         "value": np.random.randn(100) + 100,
         "feature_1": np.random.randn(100),

@@ -1,3 +1,4 @@
-"""Tests package for Faclon ML Portfolio"""
+"""Tests package for SensorMind ML Portfolio"""
 
 __all__ = []
+

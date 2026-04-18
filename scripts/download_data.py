@@ -49,7 +49,7 @@ def generate_synthetic_data():
     synthetic_forecast.to_csv(
         DATA_RAW_PATH / "synthetic_forecast.csv"
     )
-    logger.info(f"✓ Saved synthetic forecast data: {DATA_RAW_PATH}/synthetic_forecast.csv")
+    logger.info(f"[OK] Saved synthetic forecast data: {DATA_RAW_PATH}/synthetic_forecast.csv")
     
     # Generate synthetic anomaly data
     synthetic_anomaly = load_synthetic_time_series(
@@ -60,14 +60,14 @@ def generate_synthetic_data():
     synthetic_anomaly.to_csv(
         DATA_RAW_PATH / "synthetic_anomaly.csv"
     )
-    logger.info(f"✓ Saved synthetic anomaly data: {DATA_RAW_PATH}/synthetic_anomaly.csv")
+    logger.info(f"[OK] Saved synthetic anomaly data: {DATA_RAW_PATH}/synthetic_anomaly.csv")
 
 
 if __name__ == "__main__":
     DATA_RAW_PATH.mkdir(parents=True, exist_ok=True)
     
     logger.info("=" * 60)
-    logger.info("Faclon ML Portfolio - Data Download Script")
+    logger.info("SensorMind ML Portfolio - Data Download Script")
     logger.info("=" * 60)
     logger.info("")
     
@@ -80,5 +80,6 @@ if __name__ == "__main__":
     generate_synthetic_data()
     
     logger.info("")
-    logger.info("✓ Data preparation complete!")
+    logger.info("[OK] Data preparation complete!")
     logger.info("Next step: Run 'jupyter notebook' to start EDA")
+

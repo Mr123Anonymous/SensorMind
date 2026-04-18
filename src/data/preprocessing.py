@@ -1,5 +1,5 @@
 """
-Data preprocessing utilities for Faclon ML Portfolio.
+Data preprocessing utilities for SensorMind ML Portfolio.
 Handles cleaning, normalization, and feature engineering.
 """
 
@@ -36,15 +36,32 @@ def handle_missing_values(
     missing_counts = df.isnull().sum()
     if missing_counts.sum() > 0:
         logger.info(f"Found missing values:\n{missing_counts[missing_counts > 0]}")
-        
+
+        numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
+        non_numeric_cols = [c for c in df.columns if c not in numeric_cols]
+
         if method == "interpolate":
-            df = df.interpolate(method="linear", limit_direction="both")
+            # Interpolate only numeric columns to avoid object-dtype warnings/errors.
+            if numeric_cols:
+                df[numeric_cols] = (
+                    df[numeric_cols]
+                    .infer_objects(copy=False)
+                    .interpolate(method="linear", limit_direction="both")
+                )
+            # Forward/backward fill categorical/text columns, then fill any remaining gaps.
+            if non_numeric_cols:
+                df[non_numeric_cols] = df[non_numeric_cols].ffill().bfill().fillna("unknown")
         elif method == "forward_fill":
-            df = df.fillna(method="ffill").fillna(method="bfill")
+            df = df.ffill().bfill()
         elif method == "drop":
             df = df.dropna()
         elif method == "value" and fill_value is not None:
             df = df.fillna(fill_value)
+
+        # Final fallback for any unresolved numeric NaNs.
+        numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
+        if numeric_cols:
+            df[numeric_cols] = df[numeric_cols].fillna(df[numeric_cols].median())
         
         logger.info(f"Remaining missing values: {df.isnull().sum().sum()}")
     
@@ -278,13 +295,35 @@ def preprocess_forecast_data(
     # Create rolling features
     df = create_rolling_features(df, target_column)
     
-    # Separate features and target
-    y = df[target_column].values
-    X = df.drop(columns=[target_column]).values
+    # Separate target and keep numeric features only for model/scaler compatibility.
+    y_series = pd.to_numeric(df[target_column], errors="coerce")
+    feature_df = df.drop(columns=[target_column])
+    numeric_feature_df = feature_df.select_dtypes(include=[np.number]).copy()
+
+    dropped_cols = [c for c in feature_df.columns if c not in numeric_feature_df.columns]
+    if dropped_cols:
+        logger.warning(f"Dropping non-numeric forecasting features: {dropped_cols}")
+
+    if numeric_feature_df.shape[1] == 0:
+        raise ValueError("No numeric forecasting features available after preprocessing.")
+
+    numeric_feature_df = numeric_feature_df.replace([np.inf, -np.inf], np.nan)
+    if numeric_feature_df.isnull().sum().sum() > 0:
+        numeric_feature_df = numeric_feature_df.fillna(numeric_feature_df.median())
+
+    valid_target_mask = y_series.notna()
+    if not valid_target_mask.all():
+        logger.warning(
+            "Dropping %d rows with non-numeric target values.",
+            int((~valid_target_mask).sum()),
+        )
+    numeric_feature_df = numeric_feature_df.loc[valid_target_mask]
+    y = y_series.loc[valid_target_mask].to_numpy(dtype=float)
+    X = numeric_feature_df.to_numpy(dtype=float)
     
     # Split data (temporal split)
     train_size = 1 - test_size - val_size
-    n = len(df)
+    n = len(y)
     train_idx = int(n * train_size)
     val_idx = int(n * (train_size + val_size))
     
@@ -334,8 +373,16 @@ def preprocess_anomaly_data(
     # Handle outliers
     df = handle_outliers(df)
     
-    # Get features
-    X = df.values
+    # Keep numeric features only for model/scaler compatibility.
+    feature_df = df.select_dtypes(include=[np.number]).copy()
+    if feature_df.shape[1] == 0:
+        raise ValueError("No numeric anomaly features available after preprocessing.")
+
+    feature_df = feature_df.replace([np.inf, -np.inf], np.nan)
+    if feature_df.isnull().sum().sum() > 0:
+        feature_df = feature_df.fillna(feature_df.median())
+
+    X = feature_df.to_numpy(dtype=float)
     
     # Get labels if provided
     if labels_df is not None:
@@ -366,3 +413,4 @@ def preprocess_anomaly_data(
     logger.info(f"Train: {X_train.shape}, Val: {X_val.shape}, Test: {X_test.shape}")
     
     return X_train, X_val, X_test, y_train, y_val, y_test, scaler
+

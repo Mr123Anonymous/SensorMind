@@ -1,5 +1,5 @@
 """
-Data loading utilities for Faclon ML Portfolio.
+Data loading utilities for SensorMind ML Portfolio.
 Handles loading of datasets from various sources.
 """
 
@@ -117,7 +117,7 @@ def load_synthetic_time_series(
     np.random.seed(seed)
     
     # Create time index
-    dates = pd.date_range(start="2023-01-01", periods=n_samples, freq="H")
+    dates = pd.date_range(start="2023-01-01", periods=n_samples, freq="h")
     
     # Generate synthetic data with trend, seasonality, and noise
     t = np.arange(n_samples)
@@ -146,3 +146,4 @@ if __name__ == "__main__":
     # Generate synthetic data for testing
     synthetic_data = load_synthetic_time_series()
     print(synthetic_data.head())
+

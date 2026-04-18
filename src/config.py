@@ -1,5 +1,5 @@
 """
-Configuration module for Faclon ML Portfolio.
+Configuration module for SensorMind ML Portfolio.
 Centralized settings for reproducibility and easy parameter management.
 """
 
@@ -15,6 +15,8 @@ MODELS_PATH = PROJECT_ROOT / "models"
 REPORTS_PATH = PROJECT_ROOT / "reports"
 FIGURES_PATH = REPORTS_PATH / "figures"
 NOTEBOOKS_PATH = PROJECT_ROOT / "notebooks"
+# Backward-compatible alias used in early notebook cells.
+PLOTS_PATH = FIGURES_PATH
 
 # Create directories if they don't exist
 for path in [DATA_RAW_PATH, DATA_PROCESSED_PATH, MODELS_PATH, REPORTS_PATH, FIGURES_PATH]:
@@ -24,11 +26,15 @@ for path in [DATA_RAW_PATH, DATA_PROCESSED_PATH, MODELS_PATH, REPORTS_PATH, FIGU
 RANDOM_SEED = 42
 import random
 import numpy as np
-import torch
+try:
+    import torch
+except ImportError:  # Optional for lightweight notebook environments.
+    torch = None
 
 random.seed(RANDOM_SEED)
 np.random.seed(RANDOM_SEED)
-torch.manual_seed(RANDOM_SEED)
+if torch is not None:
+    torch.manual_seed(RANDOM_SEED)
 
 # Model training configurations
 MODEL_CONFIG: Dict[str, Any] = {
@@ -126,15 +132,15 @@ LOGGING_CONFIG: Dict[str, Any] = {
 
 # MLflow configuration
 MLFLOW_CONFIG: Dict[str, Any] = {
-    "experiment_name": "faclon-ml-portfolio",
+    "experiment_name": "SensorMind-ml-portfolio",
     "tracking_uri": "sqlite:///mlruns/mlflow.db",
     "registry_uri": "sqlite:///mlruns/registry.db",
 }
 
 # Streamlit configuration for app
 STREAMLIT_CONFIG: Dict[str, Any] = {
-    "page_title": "Faclon ML Portfolio",
-    "page_icon": "📊",
+    "page_title": "SensorMind ML Portfolio",
+    "page_icon": ":bar_chart:",
     "layout": "wide",
     "initial_sidebar_state": "expanded",
     "theme": {
@@ -175,3 +181,4 @@ def get_config_section(section: str) -> Dict[str, Any]:
         "api": API_CONFIG,
     }
     return section_map.get(section, {})
+

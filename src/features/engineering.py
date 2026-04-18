@@ -1,5 +1,5 @@
 """
-Feature engineering utilities for Faclon ML Portfolio.
+Feature engineering utilities for SensorMind ML Portfolio.
 Creates custom features optimized for each task type.
 """
 
@@ -65,3 +65,4 @@ def create_time_series_features(
     logger.info(f"Created {len(df.columns) - 1} engineered features")
     
     return df.dropna()
+
