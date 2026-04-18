@@ -24,7 +24,7 @@ docker-compose up -d
 - Jupyter: http://localhost:8888
 
 ## Streamlit Community Cloud Deployment
-1. Push repository to GitHub
+1. Push repository to your remote host
 2. Open Streamlit Community Cloud dashboard
 3. Create a new app from this repo
 4. Set entrypoint to app/Home.py

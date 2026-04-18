@@ -85,9 +85,9 @@ SensorMind-ml-portfolio/
 ### Option 1: Local Setup
 
 ```bash
-# Clone the repository from GitHub
-# Then change into the project directory
-cd <repo-directory>
+# Clone the repository and enter the project directory
+git clone https://github.com/Mr123Anonymous/SensorMind.git
+cd SensorMind
 
 # Create virtual environment
 py -3.11 -m venv .venv  # Windows (recommended)
@@ -133,7 +133,7 @@ docker-compose up -d
 
 ```bash
 # Deploy to Streamlit Cloud (free tier)
-# Connect your GitHub repo at https://share.streamlit.io
+# Connect your repository at https://share.streamlit.io
 ```
 
 ---
@@ -231,7 +231,7 @@ By completing this project, you'll understand:
 3. **Deep Learning**: LSTM for sequences, Autoencoders for unsupervised learning
 4. **Modern AI**: LLM integration, embeddings, prompt engineering
 5. **Production ML**: Experiment tracking, model versioning, APIs
-6. **DevOps**: Docker, GitHub Actions, cloud deployment
+6. **DevOps**: Docker, CI/CD workflows, cloud deployment
 7. **Software Engineering**: Modular design, testing, documentation
 
 ---
@@ -291,7 +291,7 @@ By completing this project, you'll understand:
 ### Phase 6 (Days 41-42)
 - [x] Cloud deployment
 - [x] Comprehensive documentation
-- [x] GitHub repo finalization checklist
+- [x] Repository finalization checklist
 
 ---
 
@@ -348,8 +348,8 @@ This project is MIT licensed. See LICENSE file for details.
 
 ##  Getting Help
 
-- **Issues**: Open a GitHub issue for bugs/questions
-- **Discussions**: Join GitHub Discussions for ideas
+- **Issues**: Open a repository issue for bugs/questions
+- **Discussions**: Use repository discussions for ideas
 
 ---
 

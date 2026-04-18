@@ -22,7 +22,7 @@
 - [ ] runtime.txt compatible with target Python version
 
 ## CI/CD
-- [ ] GitHub Actions workflow passing
+- [ ] CI workflow passing
 - [ ] Coverage report generated
 - [ ] Lint and type-check completed
 
