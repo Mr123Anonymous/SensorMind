@@ -19,7 +19,7 @@ This project demonstrates the modern AI/ML stack across multiple domains:
 
 ---
 
-##  What You'll Learn
+##  Key Skills Demonstrated
 
 -  **ML Fundamentals**: Regression, classification, clustering, feature engineering
 -  **Deep Learning**: LSTM, autoencoders, transformer embeddings
