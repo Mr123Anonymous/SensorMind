@@ -1,12 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="faclon-ml-portfolio",
+    name="SensorMind-ml-portfolio",
     version="0.1.0",
     description="End-to-end ML portfolio project: Time-series forecasting, anomaly detection, and NLP deployment",
     author="Your Name",
-    author_email="your.email@example.com",
-    url="https://github.com/yourname/faclon-ml-portfolio",
     packages=find_packages(),
     python_requires=">=3.11",
     install_requires=[
@@ -25,3 +23,4 @@ setup(
         ]
     },
 )
+

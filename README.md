@@ -1,12 +1,12 @@
-# Faclon ML Portfolio - End-to-End Data Science Project
+# SensorMind ML Portfolio - End-to-End Data Science Project
 
-**Status**: 🚀 Phase 1 Complete - Project Setup Done
+**Status**: Phase 6 release prep ready - documentation, deployment, and release checks are in place
 
-A comprehensive machine learning portfolio project showcasing **time-series forecasting**, **anomaly detection**, and **NLP** with **LLM integration**. Built for the Faclon Labs Data Science Internship (3-6 months).
+A comprehensive machine learning portfolio project showcasing **time-series forecasting**, **anomaly detection**, and **NLP** with **LLM integration**. Built as a standalone resume project.
 
 ---
 
-## 📋 Project Overview
+##  Project Overview
 
 This project demonstrates the modern AI/ML stack across multiple domains:
 
@@ -19,85 +19,104 @@ This project demonstrates the modern AI/ML stack across multiple domains:
 
 ---
 
-## 🎯 What You'll Learn
+##  What You'll Learn
 
-- ✅ **ML Fundamentals**: Regression, classification, clustering, feature engineering
-- ✅ **Deep Learning**: LSTM, autoencoders, transformer embeddings
-- ✅ **Modern AI Stack**: LLM integration, prompt engineering, embeddings
-- ✅ **Production ML**: Experiment tracking (MLflow), model versioning, deployment
-- ✅ **Software Engineering**: Modular code, testing, CI/CD, Docker
-- ✅ **Data Science Workflow**: EDA → Preprocessing → Modeling → Evaluation → Deployment
+-  **ML Fundamentals**: Regression, classification, clustering, feature engineering
+-  **Deep Learning**: LSTM, autoencoders, transformer embeddings
+-  **Modern AI Stack**: LLM integration, prompt engineering, embeddings
+-  **Production ML**: Experiment tracking (MLflow), model versioning, deployment
+-  **Software Engineering**: Modular code, testing, CI/CD, Docker
+-  **Data Science Workflow**: EDA -> Preprocessing -> Modeling -> Evaluation -> Deployment
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
-faclon-ml-portfolio/
-├── README.md                    # This file
-├── requirements.txt             # All dependencies
-├── setup.py                     # Package installation
-├── Dockerfile & docker-compose.yml
-├── Makefile                     # Common commands
-│
-├── src/
-│   ├── config.py               # Centralized configuration
-│   ├── data/
-│   │   ├── loaders.py          # Load PGCB, Yahoo, synthetic data
-│   │   └── preprocessing.py    # Clean, normalize, feature engineering
-│   ├── features/
-│   │   └── engineering.py      # Create lag, rolling, cyclical features
-│   ├── models/
-│   │   ├── train.py            # Training loops
-│   │   ├── predict.py          # Inference
-│   │   └── evaluate.py         # Metrics
-│   └── utils/
-│       └── helpers.py          # Logging, metrics, utilities
-│
-├── notebooks/
-│   ├── 01_pgcb_exploration.ipynb       # EDA for forecasting
-│   ├── 01_anomaly_exploration.ipynb    # EDA for anomaly detection
-│   ├── 03_pgcb_modeling.ipynb          # Model experiments
-│   └── 03_anomaly_modeling.ipynb       # Anomaly detection experiments
-│
-├── app/
-│   ├── streamlit_app.py                # Main app entry point
-│   └── pages/
-│       ├── 01_Forecasting.py           # PGCB prediction demo
-│       ├── 02_Anomaly_Detection.py    # Sensor anomaly demo
-│       ├── 03_NLP_Sentiment.py        # Sentiment analysis (optional)
-│       ├── 04_Model_Comparison.py     # Performance dashboard
-│       └── 05_About.py                 # Project info
-│
-├── models/                     # Trained model artifacts
-├── data/
-│   ├── raw/                    # Original datasets
-│   └── processed/              # Cleaned datasets
-├── tests/                      # Unit tests
-├── reports/                    # Generated reports & figures
-└── .github/workflows/          # CI/CD pipeline
+SensorMind-ml-portfolio/
+ README.md                    # This file
+ requirements.txt             # All dependencies
+ setup.py                     # Package installation
+ Dockerfile & docker-compose.yml
+ Makefile                     # Common commands
+
+ src/
+    config.py               # Centralized configuration
+    data/
+       loaders.py          # Load PGCB, Yahoo, synthetic data
+       preprocessing.py    # Clean, normalize, feature engineering
+    features/
+       engineering.py      # Create lag, rolling, cyclical features
+    models/
+       train.py            # Training loops
+       predict.py          # Inference
+       evaluate.py         # Metrics
+    utils/
+        helpers.py          # Logging, metrics, utilities
+
+ notebooks/
+    01_pgcb_exploration.ipynb       # EDA for forecasting
+    01_anomaly_exploration.ipynb    # EDA for anomaly detection
+
+ app/
+   Home.py                         # Main app entry point
+    pages/
+        01_Forecasting.py           # PGCB prediction demo
+        02_Anomaly_Detection.py    # Sensor anomaly demo
+        03_NLP_Sentiment.py        # Sentiment analysis (optional)
+        04_Model_Comparison.py     # Performance dashboard
+        05_About.py                 # Project info
+
+ models/                     # Trained model artifacts
+ data/
+    raw/                    # Original datasets
+    processed/              # Cleaned datasets
+ tests/                      # Unit tests
+ reports/                    # Generated reports & figures
+ .github/workflows/          # CI/CD pipeline
 ```
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
+
+> **Python version**: Use Python **3.11** for this pinned dependency set.
 
 ### Option 1: Local Setup
 
 ```bash
-# Clone repository
-git clone https://github.com/yourusername/faclon-ml-portfolio.git
-cd faclon-ml-portfolio
+# Clone the repository from GitHub
+# Then change into the project directory
+cd <repo-directory>
 
 # Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+py -3.11 -m venv .venv  # Windows (recommended)
+python -m venv .venv  # Linux/macOS (ensure this python is 3.11)
+
+# Activate the virtual environment
+.\\.venv\\Scripts\\Activate.ps1  # Windows PowerShell
+source .venv/bin/activate  # Linux/macOS
+
+# Verify interpreter version inside the venv
+python --version  # Should print Python 3.11.x
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Run Streamlit app
-streamlit run app/streamlit_app.py
+# Initiate Phase 2 data preparation
+python scripts/run_phase2.py
+
+# Initiate Phase 3 model training
+python scripts/run_phase3.py
+
+# Initiate Phase 4 (error analysis only)
+python scripts/run_phase4.py
+
+# Launch Phase 5 deployment app
+streamlit run app/Home.py
+
+# Run Phase 6 release-readiness checks
+python scripts/run_phase6.py
 ```
 
 ### Option 2: Docker Setup
@@ -119,13 +138,13 @@ docker-compose up -d
 
 ---
 
-## 📊 Datasets
+##  Datasets
 
 ### 1. PGCB Grid Forecasting (Time-Series)
 - **Source**: [UCI ML Repository](https://archive.ics.uci.edu/dataset/1175)
 - **Size**: 92.65K hourly records
 - **Task**: Predict electricity generation
-- **Relevance**: Direct application to Faclon's IoT/infrastructure focus
+- **Relevance**: Direct application to SensorMind's IoT/infrastructure focus
 
 ### 2. Yahoo Anomaly Detection
 - **Source**: [HuggingFace](https://huggingface.co/datasets/YahooResearch/ydata-labeled-time-series-anomalies-v1_0)
@@ -140,7 +159,7 @@ docker-compose up -d
 
 ---
 
-## 🔧 Commands
+##  Commands
 
 ```bash
 # Install dependencies
@@ -164,7 +183,7 @@ make docker-up
 # Stop Docker containers
 make docker-down
 
-# Run Streamlit app
+# Run Streamlit App
 make streamlit
 
 # Train all models
@@ -172,34 +191,42 @@ make train
 
 # Download datasets
 make download-data
+
+# Initiate Phase 2 pipeline
+python scripts/run_phase2.py
+
+# Initiate Phase 3 pipeline
+python scripts/run_phase3.py
+
+# Initiate Phase 4 pipeline
+python scripts/run_phase4.py
+
+# Launch Phase 5 app
+streamlit run app/Home.py
+
+# Run Phase 6 checks
+python scripts/run_phase6.py
 ```
 
 ---
 
-## 📈 Model Performance
+##  Model Performance
 
-### Time-Series Forecasting (PGCB)
-| Model | RMSE | MAE | MAPE | R² |
-|-------|------|-----|------|-----|
-| ARIMA | TBD | TBD | TBD | TBD |
-| Prophet | TBD | TBD | TBD | TBD |
-| LSTM | TBD | TBD | TBD | TBD |
-| **XGBoost** | **TBD** | **TBD** | **TBD** | **TBD** |
+Model metrics are generated by Phase 3 and written to [data/processed/phase3_summary.json](data/processed/phase3_summary.json). Phase 4 consumes those artifacts to produce [reports/error_analysis.json](reports/error_analysis.json) and [reports/error_analysis.md](reports/error_analysis.md).
 
-### Anomaly Detection
-| Model | Precision | Recall | F1 | ROC-AUC |
-|-------|-----------|--------|-----|---------|
-| Isolation Forest | TBD | TBD | TBD | TBD |
-| **Autoencoder** | **TBD** | **TBD** | **TBD** | **TBD** |
-| One-Class SVM | TBD | TBD | TBD | TBD |
+The shipped baselines are:
+
+- Forecasting: Ridge, Random Forest, and a PyTorch MLP
+- Anomaly detection: Isolation Forest and a PyTorch autoencoder
+- NLP sentiment: TF-IDF + Logistic Regression
 
 ---
 
-## 🎓 Learning Outcomes
+##  Learning Outcomes
 
 By completing this project, you'll understand:
 
-1. **Data Science Workflow**: EDA → Feature Engineering → Modeling → Evaluation
+1. **Data Science Workflow**: EDA -> Feature Engineering -> Modeling -> Evaluation
 2. **Classical ML**: Regression (ARIMA), Classification (Logistic, Tree-based)
 3. **Deep Learning**: LSTM for sequences, Autoencoders for unsupervised learning
 4. **Modern AI**: LLM integration, embeddings, prompt engineering
@@ -209,7 +236,7 @@ By completing this project, you'll understand:
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Core ML
 - **scikit-learn**: Classical ML algorithms
@@ -234,41 +261,41 @@ By completing this project, you'll understand:
 
 ---
 
-## 📝 Development Roadmap
+##  Development Roadmap
 
-### Phase 1 ✅ (Days 1-3)
+### Phase 1  (Days 1-3)
 - [x] Project structure & setup
 - [x] Docker configuration
 - [x] Configuration management
 
-### Phase 2 🔄 (Days 4-10)
-- [ ] EDA notebooks (3 datasets)
-- [ ] Data loaders & preprocessing
-- [ ] Feature engineering
+### Phase 2  (Days 4-10)
+- [x] EDA notebooks (PGCB + anomaly)
+- [x] Data loaders & preprocessing
+- [x] Feature engineering
 
 ### Phase 3 (Days 11-28)
-- [ ] Time-series forecasting models
-- [ ] Anomaly detection models
-- [ ] Optional: NLP sentiment models
+- [x] Time-series forecasting baseline models
+- [x] Anomaly detection baseline models
+- [x] Optional: NLP sentiment baseline models
 
 ### Phase 4 (Days 29-32)
-- [ ] Unit tests
-- [ ] Error analysis
-- [ ] MLflow experiment tracking
+- [x] Unit tests
+- [x] Error analysis
+- [x] MLflow experiment tracking
 
 ### Phase 5 (Days 33-40)
-- [ ] Streamlit app (5 pages)
-- [ ] Model API
-- [ ] Local testing
+- [x] Streamlit App (5 pages)
+- [x] Model API/inference integration
+- [x] Local testing
 
 ### Phase 6 (Days 41-42)
-- [ ] Cloud deployment
-- [ ] Comprehensive documentation
-- [ ] GitHub repo finalization
+- [x] Cloud deployment
+- [x] Comprehensive documentation
+- [x] GitHub repo finalization checklist
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 ```bash
 # Run all tests
@@ -283,16 +310,17 @@ pytest tests/ --cov=src --cov-report=html
 
 ---
 
-## 📚 Documentation
+##  Documentation
 
 - [ARCHITECTURE.md](docs/ARCHITECTURE.md) - System design & data flow
 - [DEPLOYMENT.md](docs/DEPLOYMENT.md) - Cloud deployment guide
 - [API.md](docs/API.md) - API endpoints & examples
 - [CODE_STRUCTURE.md](docs/CODE_STRUCTURE.md) - Codebase navigation
+- [RELEASE_CHECKLIST.md](docs/RELEASE_CHECKLIST.md) - Final release checklist
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions welcome! Please:
 1. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -303,28 +331,28 @@ Contributions welcome! Please:
 
 ---
 
-## 📞 Resources
+##  Resources
 
-- **Faclon Labs**: [Website](https://faclon.io)
-- **Internship Info**: See original job posting
+- **Project Repository**: Source code and documentation in this repo
 - **Dataset Links**:
   - [PGCB Dataset](https://archive.ics.uci.edu/dataset/1175)
   - [Yahoo Anomaly](https://huggingface.co/datasets/YahooResearch/...)
 
 ---
 
-## 📄 License
+##  License
 
 This project is MIT licensed. See LICENSE file for details.
 
 ---
 
-## 🎉 Getting Help
+##  Getting Help
 
 - **Issues**: Open a GitHub issue for bugs/questions
 - **Discussions**: Join GitHub Discussions for ideas
-- **Email**: your.email@example.com
 
 ---
 
-**Happy Learning! 🚀** Build amazing things with Faclon!
+**Happy Learning!** Build amazing things with SensorMind!
+
+
