@@ -89,9 +89,12 @@ data/raw/*
 data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+!data/processed/phase3_summary.json
 reports/*
 !reports/.gitkeep
 !reports/figures/.gitkeep
+!reports/error_analysis.json
+!reports/error_analysis.md
 .tmp_phase4/
 tests/.tmp_phase4/
 .streamlit/secrets.toml

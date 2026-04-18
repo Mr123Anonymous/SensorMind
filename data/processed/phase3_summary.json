@@ -1,0 +1,75 @@
+{
+  "forecast": {
+    "best_model": "random_forest",
+    "artifacts": {
+      "ridge": "C:\\Users\\Sohan\\Projects\\SensorMind\\models\\forecast_ridge.joblib",
+      "random_forest": "C:\\Users\\Sohan\\Projects\\SensorMind\\models\\forecast_random_forest.joblib",
+      "mlp": "C:\\Users\\Sohan\\Projects\\SensorMind\\models\\forecast_mlp.pt"
+    },
+    "metrics": {
+      "ridge": {
+        "MSE": 926989.2703796803,
+        "RMSE": 962.8028200933358,
+        "MAE": 879.2913423953338,
+        "MAPE": 7.448694153048407
+      },
+      "random_forest": {
+        "MSE": 186134.65403715734,
+        "RMSE": 431.4332555994697,
+        "MAE": 308.65116711980073,
+        "MAPE": 2.5705783768550745
+      },
+      "mlp": {
+        "MSE": 641880.1991841864,
+        "RMSE": 801.1742626820874,
+        "MAE": 694.2158092267385,
+        "MAPE": 5.714448644274079
+      }
+    }
+  },
+  "anomaly": {
+    "best_model": "autoencoder",
+    "artifacts": {
+      "isolation_forest": "C:\\Users\\Sohan\\Projects\\SensorMind\\models\\anomaly_isolation_forest.joblib",
+      "autoencoder": "C:\\Users\\Sohan\\Projects\\SensorMind\\models\\anomaly_autoencoder.pt"
+    },
+    "metrics": {
+      "isolation_forest": {
+        "Accuracy": 0.7266666666666667,
+        "Precision": 0.14977973568281938,
+        "Recall": 0.7391304347826086,
+        "F1": 0.24908424908424906
+      },
+      "autoencoder": {
+        "Accuracy": 0.7973333333333333,
+        "Precision": 0.23232323232323232,
+        "Recall": 1.0,
+        "F1": 0.3770491803278689
+      }
+    }
+  },
+  "nlp": {
+    "best_model": "tfidf_logistic_regression",
+    "artifacts": {
+      "tfidf_logistic_regression": "C:\\Users\\Sohan\\Projects\\SensorMind\\models\\nlp_tfidf_logreg.joblib"
+    },
+    "metrics": {
+      "tfidf_logistic_regression": {
+        "Accuracy": 1.0,
+        "Precision": 1.0,
+        "Recall": 1.0,
+        "F1": 1.0,
+        "Confusion_Matrix": [
+          [
+            40,
+            0
+          ],
+          [
+            0,
+            40
+          ]
+        ]
+      }
+    }
+  }
+}

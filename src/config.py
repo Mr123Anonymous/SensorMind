@@ -15,11 +15,12 @@ MODELS_PATH = PROJECT_ROOT / "models"
 REPORTS_PATH = PROJECT_ROOT / "reports"
 FIGURES_PATH = REPORTS_PATH / "figures"
 NOTEBOOKS_PATH = PROJECT_ROOT / "notebooks"
+MLRUNS_PATH = PROJECT_ROOT / "mlruns"
 # Backward-compatible alias used in early notebook cells.
 PLOTS_PATH = FIGURES_PATH
 
 # Create directories if they don't exist
-for path in [DATA_RAW_PATH, DATA_PROCESSED_PATH, MODELS_PATH, REPORTS_PATH, FIGURES_PATH]:
+for path in [DATA_RAW_PATH, DATA_PROCESSED_PATH, MODELS_PATH, REPORTS_PATH, FIGURES_PATH, MLRUNS_PATH]:
     path.mkdir(parents=True, exist_ok=True)
 
 # Random seeds for reproducibility

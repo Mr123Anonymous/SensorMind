@@ -1,0 +1,92 @@
+{
+  "phase": "phase4",
+  "forecast": {
+    "best_model": "random_forest",
+    "analysis": {
+      "mae": 308.65116711980073,
+      "residual_mean": 287.4413534282929,
+      "residual_std": 321.7329985818497,
+      "p90_abs_error": 700.0890000000003,
+      "worst_indices": [
+        3902,
+        1299,
+        6577,
+        2168,
+        6647,
+        1430,
+        8218,
+        3163,
+        7962,
+        7437
+      ],
+      "worst_abs_errors": [
+        2669.16,
+        2356.74,
+        2332.8250000000007,
+        2199.3099999999995,
+        2142.4850000000006,
+        2066.8250000000007,
+        2006.2800000000007,
+        1987.1499999999996,
+        1892.9099999999999,
+        1877.2900000000009
+      ]
+    }
+  },
+  "anomaly": {
+    "best_model": "autoencoder",
+    "analysis": {
+      "threshold": 0.0007708144758362338,
+      "false_positives": 152,
+      "false_negatives": 0,
+      "true_positives": 46,
+      "true_negatives": 552,
+      "fp_indices": [
+        0,
+        2,
+        3,
+        4,
+        6,
+        7,
+        30,
+        31,
+        52,
+        58,
+        76,
+        101,
+        122,
+        123,
+        124,
+        125,
+        126,
+        144,
+        145,
+        146
+      ],
+      "fn_indices": []
+    }
+  },
+  "nlp": {
+    "best_model": "tfidf_logistic_regression",
+    "metrics": {
+      "Accuracy": 1.0,
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "F1": 1.0,
+      "Confusion_Matrix": [
+        [
+          40,
+          0
+        ],
+        [
+          0,
+          40
+        ]
+      ]
+    },
+    "analysis": {
+      "note": "Synthetic text baseline reached high scores; validate on real corpus before production.",
+      "risk": "Potential overfitting to templated synthetic phrases."
+    }
+  }
+}
