@@ -1,7 +1,7 @@
-.PHONY: help install test lint format clean docker-up docker-down streamlit train
+.PHONY: help install test lint format clean docker-up docker-down streamlit train phase2 phase3 phase4 phase5 phase6
 
 help:
-	@echo "Faclon ML Portfolio - Available Commands"
+	@echo "SensorMind ML Portfolio - Available Commands"
 	@echo "========================================"
 	@echo "  make install         - Install dependencies"
 	@echo "  make test            - Run pytest"
@@ -13,6 +13,11 @@ help:
 	@echo "  make streamlit       - Run Streamlit app locally"
 	@echo "  make train           - Train all models"
 	@echo "  make download-data   - Download datasets"
+	@echo "  make phase2          - Run Phase 2 preprocessing pipeline"
+	@echo "  make phase3          - Run Phase 3 model training pipeline"
+	@echo "  make phase4          - Run Phase 4 tests + error analysis"
+	@echo "  make phase5          - Launch Streamlit deployment app"
+	@echo "  make phase6          - Run Phase 6 release-readiness checks"
 
 install:
 	pip install -r requirements.txt
@@ -41,10 +46,26 @@ docker-down:
 	docker-compose down
 
 streamlit:
-	streamlit run app/streamlit_app.py
+	streamlit run app/Home.py
 
 train:
 	python -m src.models.train
 
 download-data:
 	python scripts/download_data.py
+
+phase2:
+	python scripts/run_phase2.py
+
+phase3:
+	python scripts/run_phase3.py
+
+phase4:
+	python scripts/run_phase4.py
+
+phase5:
+	streamlit run app/Home.py
+
+phase6:
+	python scripts/run_phase6.py
+

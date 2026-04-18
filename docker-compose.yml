@@ -3,7 +3,7 @@ version: '3.8'
 services:
   app:
     build: .
-    container_name: faclon-ml-app
+    container_name: SensorMind-ml-app
     ports:
       - "8501:8501"
     volumes:
@@ -12,11 +12,11 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
     networks:
-      - faclon-network
+      - SensorMind-network
 
   jupyter:
     image: jupyter/pytorch-notebook:latest
-    container_name: faclon-jupyter
+    container_name: SensorMind-jupyter
     ports:
       - "8888:8888"
     volumes:
@@ -28,8 +28,9 @@ services:
       bash -c "pip install -r /tmp/requirements.txt &&
       jupyter lab --ip=0.0.0.0 --allow-root --no-browser"
     networks:
-      - faclon-network
+      - SensorMind-network
 
 networks:
-  faclon-network:
+  SensorMind-network:
     driver: bridge
+
